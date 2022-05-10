@@ -23,7 +23,7 @@ public class GUI extends Application {
 			stage.setResizable(false);
 			Image myIcon = new Image("encryption-icon.png");
 			stage.getIcons().add(myIcon);
-			//scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			stage.setScene(scene);
 			stage.show();
 		} catch(Exception e) {
