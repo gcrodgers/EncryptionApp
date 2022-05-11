@@ -21,14 +21,15 @@ public class GUI extends Application {
 		try {
 			Parent root = FXMLLoader.load(getClass().getResource("builder.fxml"));
 			//Group root = new Group();
-			Scene scene = new Scene(root, Color.LIGHTSKYBLUE);
+			Scene scene = new Scene(root);
 			stage.setTitle("Ecryption Selecter Demo");
-			stage.setHeight(600);
+			stage.setHeight(400);
 			stage.setWidth(600);
 			stage.setResizable(false);
 			Image myIcon = new Image("encryption-icon.png");
 			stage.getIcons().add(myIcon);
-			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+			String css = this.getClass().getResource("application.css").toExternalForm();
+			scene.getStylesheets().add(css);
 			stage.setScene(scene);
 			stage.show();
 		} catch(Exception e) {
