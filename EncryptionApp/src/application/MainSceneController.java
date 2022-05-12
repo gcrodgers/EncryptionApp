@@ -10,7 +10,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class SwitchScene {
+public class MainSceneController {
 
 	private Parent root;
 	private Stage stage;

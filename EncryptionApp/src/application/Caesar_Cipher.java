@@ -1,5 +1,15 @@
 package application;
-import java.util.Scanner;
+import java.io.IOException;
+
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 /**
  * 
@@ -11,8 +21,123 @@ import java.util.Scanner;
  */
 public class Caesar_Cipher {
 	
+	
+	//JavaFX components
+	@FXML
+	TextField caesarText_textfield;
+	@FXML
+	TextField shift_textfield;
+	@FXML
+	Label resultLabel;
+	
+	private Parent root;
+	private Stage stage;
+	private Scene scene;
+	
 	//there are 26 letters in the English alphabet
 	final static int LETTER_AMOUNT = 26;
+	
+	
+	/**
+	 * Takes you back to the main screen
+	 * 
+	 * @param e - event
+	 * @throws IOException
+	 */
+	public void back(ActionEvent e) throws IOException {
+		root = FXMLLoader.load(getClass().getResource("builder.fxml"));
+		stage = (Stage) ((Node)e.getSource()).getScene().getWindow();
+		scene = new Scene(root);
+		stage.setScene(scene);
+		stage.show();
+	}
+	
+	/**
+	 * Encrypts given the inputs in the text fields
+	 * 
+	 * @param e - event
+	 */
+	public void encrypt(ActionEvent e) {
+		//retrieve both the entered texts
+		String text = caesarText_textfield.getText();
+		String keyText = shift_textfield.getText();
+		
+		//error checking
+		if(text.isEmpty()) {
+			resultLabel.setText("Please enter some text");
+			return;
+		}
+		else if(keyText.isEmpty() ) {
+			resultLabel.setText("Please enter a shift amount");
+			return;
+		}
+		else if(!text.matches("[a-zA-Z ]*")) {
+			resultLabel.setText("Please enter only text in English");
+			return;
+		}
+		else if(!keyText.matches("\\d+")) {
+			resultLabel.setText("Please enter a valid integer");
+			return;
+		}
+		else if(Integer.parseInt(keyText) < 0 || Integer.parseInt(keyText) > 25) {
+			resultLabel.setText("Please enter a valid integer between 0 and 25");
+			return;
+		}
+		
+		//remove whitespace
+		text = text.trim();
+		
+		//cast the entered string for shift to int
+		int keyVal = Integer.parseInt(keyText);
+		
+		//call cipher method and display result to user
+		StringBuffer result = caesar_cipher(text, keyVal);
+		resultLabel.setText("Your encrypted cipher is: " + result.toString());
+	}
+	
+	/**
+	 * Decrypts given the inputs in the text fields
+	 * 
+	 * @param e - event
+	 */
+	public void decrypt(ActionEvent e) {
+		//retrieve both the entered texts
+		String text = caesarText_textfield.getText();
+		String keyText = shift_textfield.getText();
+		
+		//error checking
+		if(text.isEmpty()) {
+			resultLabel.setText("Please enter some text");
+			return;
+		}
+		else if(keyText.isEmpty() ) {
+			resultLabel.setText("Please enter a shift amount");
+			return;
+		}
+		else if(!text.matches("[a-zA-Z ]*")) {
+			resultLabel.setText("Please enter only text in English");
+			return;
+		}
+		else if(!keyText.matches("\\d+")) {
+			resultLabel.setText("Please enter a valid integer");
+			return;
+		}
+		else if(Integer.parseInt(keyText) < 0 || Integer.parseInt(keyText) > 25) {
+			resultLabel.setText("Please enter a valid integer between 0 and 25");
+			return;
+		}
+		
+		//remove whitespace
+		text = text.trim();
+		
+		//cast the entered string for shift to int
+		int keyVal = Integer.parseInt(keyText);
+		
+		//call cipher method and display result to user
+		StringBuffer result = caesar_cipher(text, LETTER_AMOUNT - keyVal);
+		resultLabel.setText("Your decrypted cipher is: " + result.toString());
+	}
+	
 	
 	/**
 	 * This method will return an encrypted or decrypted Caesar Cipher given
@@ -59,71 +184,6 @@ public class Caesar_Cipher {
 		}
 		
 		return cipher;
-	}
-
-	public static void main(String[] args) {
-		//Scanner object for user input
-		Scanner s = new Scanner(System.in);
-		
-		//String input for a encryption or decryption 
-		System.out.print("Please enter text for the Caesar Cipher: ");
-		String text = s.nextLine();
-		
-		//accept only English letters, allow spaces
-		while(!text.matches("[a-zA-Z ]*")) {
-			System.out.print("Please enter only text in English: ");
-			text = s.nextLine();
-		}
-		
-		//remove any leading or trailing whitespace
-		text = text.trim();
-		
-		//accept a key shift value between 0 and 25
-		System.out.print("Please enter a shift between 0-25 for the Cipher: ");
-		while(!s.hasNextInt()) {
-			s.next();
-			System.out.println("Please enter a number: ");
-		}
-		
-		//key input 
-		int key = s.nextInt();
-		//verify key input is valid
-		while(key < 0 || key > 25) {
-			System.out.print("Please enter a number between 0 and 25 for the shift: ");
-			while(!s.hasNextInt()) {
-				s.next();
-				System.out.print("Please enter a number: ");
-			}
-			key = s.nextInt();
-		}
-		
-		//Allow the user to encrypt or decrypt the text they input
-		System.out.print("Please enter 0 if you wish to encrypt, or 1 to decrypt: ");
-		while(!s.hasNextInt()) {
-			s.next();
-			System.out.print("Please enter a number: ");
-		}
-		
-		//allow only the choice of 0 or 1 to call the respective method
-		int choice = s.nextInt();
-		while(choice < 0 || choice > 1) {
-			System.out.print("Please enter 0 or 1: ");
-			while(!s.hasNextInt()) {
-				s.next();
-				System.out.print("Please enter a number: ");
-			}
-			choice = s.nextInt();
-		}
-		
-		if(choice == 0) {
-			System.out.println("Your encrypted Caesar Cipher is: " + caesar_cipher(text, key));
-		}
-		else if(choice == 1) {
-			System.out.println("Your decrypted Caesar Cipher is: " + caesar_cipher(text, LETTER_AMOUNT - key));
-		}
-		//close Scanner object
-		s.close();
-		
 	}
 
 }
