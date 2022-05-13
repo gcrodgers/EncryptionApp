@@ -19,6 +19,8 @@ public class MainSceneController {
 	public void mainScene(ActionEvent e) throws IOException {
 		root = FXMLLoader.load(getClass().getResource("builder.fxml"));
 		stage = (Stage) ((Node)e.getSource()).getScene().getWindow();
+		stage.setHeight(400);
+		stage.setWidth(600);
 		scene = new Scene(root);
 		stage.setScene(scene);
 		stage.show();
@@ -33,13 +35,13 @@ public class MainSceneController {
 	}
 	
 	public void RSAScene(ActionEvent e) throws IOException {
-		/*
-		root = FXMLLoader.load(getClass().getResource("builder.fxml"));
+		root = FXMLLoader.load(getClass().getResource("RSAScene.fxml"));
 		stage = (Stage) ((Node)e.getSource()).getScene().getWindow();
+		stage.setHeight(425);
+		stage.setWidth(600);
 		scene = new Scene(root);
 		stage.setScene(scene);
 		stage.show();
-	   */
 	}
 	
 	public void DHAScene(ActionEvent e) throws IOException {
