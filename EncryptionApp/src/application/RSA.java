@@ -10,7 +10,10 @@ import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.util.Base64;
 
+import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -59,6 +62,47 @@ public class RSA {
 	 * @param e - event
 	 */
 	public void encrypt(ActionEvent e) {
+		String text = rsa_textfield.getText();
+		
+		//error checking
+		if(text.isEmpty()) {
+		    error_label.setText("Please enter some text");
+			return;
+		}
+		else if(!text.matches("[a-zA-Z ]*")) {
+			error_label.setText("Please enter only text in English");
+			return;
+		}
+		
+		try {
+			KeyPairGenerator gen = KeyPairGenerator.getInstance("RSA");
+			gen.initialize(512);
+			KeyPair p = gen.generateKeyPair();
+			PublicKey public_key = p.getPublic();
+			PrivateKey private_key = p.getPrivate();
+			String public_key_string = Base64.getEncoder().encodeToString(public_key.getEncoded());
+			String private_key_string = Base64.getEncoder().encodeToString(private_key.getEncoded());
+			
+			Cipher encrypt = Cipher.getInstance("RSA");
+			encrypt.init(Cipher.ENCRYPT_MODE, public_key);
+			byte[] encrypted_message = encrypt.doFinal(text.getBytes(StandardCharsets.UTF_8));
+			String result = Base64.getEncoder().encodeToString(encrypted_message);
+			
+			encrypt_label.setText(result);
+			publickey_label.setText(public_key_string);
+			privatekey_label.setText(private_key_string);
+		} catch (NoSuchAlgorithmException er) {
+			error_label.setText("Fatal error generating keys");
+		}
+		  catch(NoSuchPaddingException er) {
+			error_label.setText("Fatal error encrypting"); 
+		} catch (InvalidKeyException er) {
+			error_label.setText("Fatal error encrypting"); 
+		} catch (IllegalBlockSizeException er) {
+			error_label.setText("Fatal error"); 
+		} catch (BadPaddingException er) {
+			error_label.setText("Fatal error encrypting"); 
+		}
 		
 	}
 
