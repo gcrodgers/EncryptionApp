@@ -8,7 +8,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MainSceneController">
    <children>
-      <Text fx:id="title_label" layoutX="95.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to the Encryption Sampler!" textAlignment="CENTER">
+      <Text fx:id="title_label" layoutX="95.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to an Encryption Sampler!" textAlignment="CENTER">
          <font>
             <Font name="Verdana Bold" size="20.0" />
          </font>

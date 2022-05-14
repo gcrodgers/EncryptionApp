@@ -63,6 +63,7 @@ public class RSA {
 	 */
 	public void encrypt(ActionEvent e) {
 		String text = rsa_textfield.getText();
+		error_label.setText("");
 		
 		//error checking
 		if(text.isEmpty()) {
@@ -99,7 +100,7 @@ public class RSA {
 		} catch (InvalidKeyException er) {
 			error_label.setText("Fatal error encrypting"); 
 		} catch (IllegalBlockSizeException er) {
-			error_label.setText("Fatal error"); 
+			error_label.setText("Fatal error. Text too long for 512 bits"); 
 		} catch (BadPaddingException er) {
 			error_label.setText("Fatal error encrypting"); 
 		}
