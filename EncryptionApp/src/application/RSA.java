@@ -51,7 +51,11 @@ public class RSA {
 	public void back(ActionEvent e) throws IOException {
 		root = FXMLLoader.load(getClass().getResource("builder.fxml"));
 		stage = (Stage) ((Node)e.getSource()).getScene().getWindow();
+		stage.setHeight(400);
+		stage.setWidth(600);
 		scene = new Scene(root);
+		String css = this.getClass().getResource("application.css").toExternalForm();
+		scene.getStylesheets().add(css);
 		stage.setScene(scene);
 		stage.show();
 	}

@@ -48,6 +48,10 @@ public class Caesar_Cipher {
 		root = FXMLLoader.load(getClass().getResource("builder.fxml"));
 		stage = (Stage) ((Node)e.getSource()).getScene().getWindow();
 		scene = new Scene(root);
+		stage.setHeight(400);
+		stage.setWidth(600);
+		String css = this.getClass().getResource("application.css").toExternalForm();
+		scene.getStylesheets().add(css);
 		stage.setScene(scene);
 		stage.show();
 	}

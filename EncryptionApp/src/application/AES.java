@@ -1,5 +1,6 @@
 package application;
 
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
 import java.security.InvalidAlgorithmParameterException;
@@ -22,15 +23,54 @@ import javax.crypto.spec.PBEKeySpec;
 import javax.crypto.spec.SecretKeySpec;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 public class AES {
 	
+	@FXML
+	Label error_label;
+	@FXML
+	Label result_label;
+	@FXML
+	TextField aesText_textfield;
+	@FXML
+	TextField passwordText_textfield;
+	
+	private Parent root;
+	private Stage stage;
+	private Scene scene;
+	
 	private final String initV = "1234567891234567";
 	
-	public SecretKey getKeyFromPassword(String password, String salt) {
+	/**
+	 * Takes you back to the main screen
+	 * 
+	 * @param e - event
+	 * @throws IOException
+	 */
+	public void back(ActionEvent e) throws IOException {
+		root = FXMLLoader.load(getClass().getResource("builder.fxml"));
+		stage = (Stage) ((Node)e.getSource()).getScene().getWindow();
+		stage.setHeight(400);
+		stage.setWidth(600);
+		scene = new Scene(root);
+		String css = this.getClass().getResource("application.css").toExternalForm();
+		scene.getStylesheets().add(css);
+		stage.setScene(scene);
+		stage.show();
+	}
+	
+	public SecretKey generatePasswordKey(String password, String salt_val) {
 			try {
 				SecretKeyFactory create_key = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA256");
-				KeySpec spec = new PBEKeySpec(password.toCharArray(), salt.getBytes(), 65536, 256);
+				KeySpec spec = new PBEKeySpec(password.toCharArray(), salt_val.getBytes(), 65536, 256);
 		        SecretKey key = new SecretKeySpec(create_key.generateSecret(spec).getEncoded(), "AES");
 		        return key;
 			} catch (NoSuchAlgorithmException e) {
@@ -42,8 +82,19 @@ public class AES {
 	    }
 	
 	public void encrypt(ActionEvent e) {
-		String text;
-		String password;
+		String text = aesText_textfield.getText();
+		String password = passwordText_textfield.getText();
+		error_label.setText("");
+		
+		//error checking
+		if(text.isEmpty()) {
+		    error_label.setText("Please enter some text");
+			return;
+		}
+		else if(password.isEmpty()) {
+			error_label.setText("Please enter a password for the key");
+			return;
+		}
 	}
 	
 	/**
