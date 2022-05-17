@@ -74,10 +74,6 @@ public class RSA {
 		    error_label.setText("Please enter some text");
 			return;
 		}
-		else if(!text.matches("[a-zA-Z ]*")) {
-			error_label.setText("Please enter only text in English");
-			return;
-		}
 		
 		try {
 			KeyPairGenerator gen = KeyPairGenerator.getInstance("RSA");
