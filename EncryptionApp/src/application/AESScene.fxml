@@ -14,7 +14,7 @@
             <Font name="Verdana" size="24.0" />
          </font>
       </Text>
-      <Text layoutX="25.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="This simple implementation of AES will use the CBC version of the algorithm. The user will use a password to generate a key using the PBKDF2 function. Both the Initialization Vector and salt value will be static and cannot be changed, which wouldn't happen in a real instance of AES being used. " wrappingWidth="600.0">
+      <Text layoutX="25.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="This simple implementation of AES will use the CBC mode of the algorithm. The user will use a password to generate a key using the PBKDF2 function. Both the Initialization Vector and salt value will be static and cannot be changed, which wouldn't happen in a real instance of AES being used. " wrappingWidth="600.0">
          <font>
             <Font name="Verdana" size="12.0" />
          </font>

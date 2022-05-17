@@ -32,11 +32,11 @@ public class RSA {
 	@FXML
 	Label error_label;
 	@FXML
-	Label encrypt_label;
+	TextField result_textfield;
 	@FXML
-	Label publickey_label;
+	TextField publickey_textfield;
 	@FXML
-	Label privatekey_label;
+	TextField privatekey_textfield;
 	
 	private Parent root;
 	private Stage stage;
@@ -93,9 +93,9 @@ public class RSA {
 			byte[] encrypted_message = encrypt.doFinal(text.getBytes(StandardCharsets.UTF_8));
 			String result = Base64.getEncoder().encodeToString(encrypted_message);
 			
-			encrypt_label.setText(result);
-			publickey_label.setText(public_key_string);
-			privatekey_label.setText(private_key_string);
+			result_textfield.setText(result);
+			publickey_textfield.setText(public_key_string);
+			privatekey_textfield.setText(private_key_string);
 		} catch (NoSuchAlgorithmException er) {
 			error_label.setText("Fatal error generating keys");
 		}
