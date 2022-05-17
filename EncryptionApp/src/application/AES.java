@@ -37,7 +37,7 @@ public class AES {
 	@FXML
 	Label error_label;
 	@FXML
-	Label result_label;
+	TextField result_textfield;
 	@FXML
 	TextField aesText_textfield;
 	@FXML
@@ -86,7 +86,7 @@ public class AES {
 		String text = aesText_textfield.getText();
 		String password = passwordText_textfield.getText();
 		error_label.setText("");
-		result_label.setText("");
+		result_textfield.setText("");
 		
 		//error checking
 		if(text.isEmpty()) {
@@ -106,7 +106,7 @@ public class AES {
 			encrypt.init(Cipher.ENCRYPT_MODE, generated_key, iv);
 			byte[] encrypted_message = encrypt.doFinal(text.getBytes("UTF-8"));
 			String result = Base64.getEncoder().encodeToString(encrypted_message);
-			result_label.setText("Encrypted Message: " + result);
+			result_textfield.setText(result);
 		} catch (NoSuchAlgorithmException e1) {
 			error_label.setText("Error generating AES algo");
 		} catch (NoSuchPaddingException e1) {
@@ -129,7 +129,7 @@ public class AES {
 		String text = aesText_textfield.getText();
 		String password = passwordText_textfield.getText();
 		error_label.setText("");
-		result_label.setText("");
+		result_textfield.setText("");
 		
 		//error checking
 		if(text.isEmpty()) {
@@ -149,7 +149,7 @@ public class AES {
 			decrypt.init(Cipher.DECRYPT_MODE, generated_key, iv);
 			byte[] original = decrypt.doFinal(Base64.getDecoder().decode(text));
 			String result = new String(original, "UTF-8");
-			result_label.setText("Encrypted Message: " + result);
+			result_textfield.setText(result);
 		} catch (NoSuchAlgorithmException e1) {
 			error_label.setText("Error generating AES algo");
 		} catch (NoSuchPaddingException e1) {

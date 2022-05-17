@@ -1,3 +1,8 @@
 .root{
     -fx-background-color:"lightskyblue";
 }
+
+.result_label, .result_label:focused {
+    -fx-background-color: transparent ;
+    -fx-background-insets: 0px ;
+}
