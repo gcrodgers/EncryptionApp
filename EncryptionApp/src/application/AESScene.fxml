@@ -37,7 +37,7 @@
             <Font name="Verdana" size="14.0" />
          </font>
       </Button>
-      <Button fx:id="decrypt_button" layoutX="393.0" layoutY="261.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="95.0" text="Decrypt">
+      <Button fx:id="decrypt_button" layoutX="393.0" layoutY="261.0" mnemonicParsing="false" onAction="#decrypt" prefHeight="28.0" prefWidth="95.0" text="Decrypt">
          <font>
             <Font name="Verdana" size="14.0" />
          </font>
