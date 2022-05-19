@@ -80,7 +80,7 @@ public class AES {
 				error_label.setText("Error creating key from password");
 			}
 			return null;
-	    }
+    }
 	
 	public void encrypt(ActionEvent e) {
 		String text = aesText_textfield.getText();

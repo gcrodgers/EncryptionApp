@@ -22,8 +22,8 @@
       <Label fx:id="caesar_label" layoutX="142.0" layoutY="98.0" prefHeight="18.0" prefWidth="354.0" text="A simple cipher that shifts letters a specified n amount of times." />
       <Button fx:id="rsa_button" layoutX="31.0" layoutY="151.0" mnemonicParsing="false" onAction="#RSAScene" prefHeight="25.0" prefWidth="92.0" text="RSA" />
       <Label fx:id="rsa_label" layoutX="142.0" layoutY="155.0" text="An asymmetric algorithm that works on a public key and private key." />
-      <Button fx:id="dha_button" layoutX="31.0" layoutY="207.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="92.0" text="DHA" />
-      <Label fx:id="dha_label" layoutX="142.0" layoutY="211.0" text="An algorithm based around an elliptic curve used to establish secret connections." />
+      <Button fx:id="TripleDES_button" layoutX="31.0" layoutY="207.0" mnemonicParsing="false" onAction="#TripleDESScene" prefHeight="25.0" prefWidth="92.0" text="Triple DES" />
+      <Label fx:id="dha_label" layoutX="142.0" layoutY="211.0" text="A version of the Data Encryption Standard that is run three times." />
       <Button fx:id="aes_button" layoutX="31.0" layoutY="270.0" mnemonicParsing="false" onAction="#AESScene" prefHeight="24.0" prefWidth="92.0" text="AES" />
       <Label fx:id="aes_label" layoutX="142.0" layoutY="274.0" text="The Advanced Encryption Standard that is a symmetric block cipher. " />
       <Button fx:id="exit_button" layoutX="248.0" layoutY="310.0" mnemonicParsing="false" onAction="#exit" prefHeight="25.0" prefWidth="84.0" text="Exit" />

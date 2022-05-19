@@ -50,14 +50,16 @@ public class MainSceneController {
 		stage.show();
 	}
 	
-	public void DHAScene(ActionEvent e) throws IOException {
-		/*
-		root = FXMLLoader.load(getClass().getResource("builder.fxml"));
+	public void TripleDESScene(ActionEvent e) throws IOException {
+		root = FXMLLoader.load(getClass().getResource("TripleDESScene.fxml"));
 		stage = (Stage) ((Node)e.getSource()).getScene().getWindow();
+		stage.setHeight(520);
+		stage.setWidth(600);
 		scene = new Scene(root);
+		String css = this.getClass().getResource("application.css").toExternalForm();
+		scene.getStylesheets().add(css);
 		stage.setScene(scene);
 		stage.show();
-	   */
 	}
 	
 	public void AESScene(ActionEvent e) throws IOException {
