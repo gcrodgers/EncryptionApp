@@ -1,13 +1,17 @@
 package application;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.security.InvalidKeyException;
+import java.security.KeyFactory;
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 import java.security.NoSuchAlgorithmException;
 import java.security.PrivateKey;
 import java.security.PublicKey;
+import java.security.spec.InvalidKeySpecException;
+import java.security.spec.PKCS8EncodedKeySpec;
 import java.util.Base64;
 
 import javax.crypto.BadPaddingException;
@@ -37,6 +41,8 @@ public class RSA {
 	TextField publickey_textfield;
 	@FXML
 	TextField privatekey_textfield;
+	@FXML
+	TextField privatekey_enterfield;
 	
 	private Parent root;
 	private Stage stage;
@@ -105,6 +111,55 @@ public class RSA {
 			error_label.setText("Fatal error encrypting"); 
 		}
 		
+	}
+	
+	public void decrypt(ActionEvent e) {
+		String text = rsa_textfield.getText();
+		String privateKey = privatekey_enterfield.getText();
+		error_label.setText("");
+		
+		//error checking
+		if(text.isEmpty()) {
+		    error_label.setText("Please enter some text");
+			return;
+		}
+		else if(privateKey.isEmpty()) {
+		    error_label.setText("Decrypt requires the private key");
+			return;
+		}
+		
+		publickey_textfield.setText("");
+		privatekey_textfield.setText("");
+		
+		try {
+			Cipher decrypt = Cipher.getInstance("RSA");
+			byte[] original = Base64.getDecoder().decode(text);
+			byte[] encoded_key = Base64.getDecoder().decode(privateKey);
+			
+			PKCS8EncodedKeySpec keySpec = new PKCS8EncodedKeySpec(encoded_key);
+			
+			KeyFactory factory = KeyFactory.getInstance("RSA");
+	        PrivateKey myKey = factory.generatePrivate(keySpec);
+	        
+	        decrypt.init(Cipher.DECRYPT_MODE, myKey);
+	        byte[] decrypted_message = decrypt.doFinal(original);
+	        String result = new String(decrypted_message, "UTF-8");
+	        result_textfield.setText(result);
+		} catch (NoSuchAlgorithmException er) {
+			error_label.setText("Fatal error");
+		} catch (NoSuchPaddingException er) {
+			error_label.setText("Fatal error"); 
+		} catch (IllegalBlockSizeException e1) {
+			error_label.setText("Fatal error"); 
+		} catch (BadPaddingException e1) {
+			error_label.setText("Fatal error"); 
+		} catch (InvalidKeySpecException e1) {
+			error_label.setText("Fatal error"); 
+		} catch (InvalidKeyException e1) {
+			error_label.setText("Fatal error"); 
+		} catch (UnsupportedEncodingException e1) {
+			error_label.setText("Fatal error"); 
+		}
 	}
 
 }

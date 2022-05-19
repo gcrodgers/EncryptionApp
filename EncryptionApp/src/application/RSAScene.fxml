@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.RSA">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="503.0" prefWidth="628.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.RSA">
    <children>
       <Text layoutX="112.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rivest–Shamir–Adleman (RSA)">
          <font>
@@ -22,30 +22,37 @@
       <Label layoutX="98.0" layoutY="61.0" text="For simplicity, the key generator is only using 512 bits so that the displayed keys" />
       <Label layoutX="194.0" layoutY="84.0" text="and encrypted message aren't too long." />
       <TextField fx:id="rsa_textfield" layoutX="69.0" layoutY="120.0" prefHeight="25.0" prefWidth="504.0" />
-      <Button fx:id="back_button" layoutX="269.0" layoutY="343.0" mnemonicParsing="false" onAction="#back" prefHeight="25.0" prefWidth="62.0" text="Back" />
+      <Button fx:id="back_button" layoutX="269.0" layoutY="451.0" mnemonicParsing="false" onAction="#back" prefHeight="25.0" prefWidth="62.0" text="Back" />
       <Button fx:id="encrypt_button" layoutX="259.0" layoutY="165.0" mnemonicParsing="false" onAction="#encrypt" prefHeight="25.0" prefWidth="82.0" text="Encrypt" />
-      <Label layoutX="18.0" layoutY="244.0" text="Result:">
+      <Label layoutX="14.0" layoutY="340.0" text="Result:">
          <font>
             <Font name="Verdana" size="15.0" />
          </font>
       </Label>
-      <Label layoutX="18.0" layoutY="273.0" text="Public Key:">
+      <Label layoutX="12.0" layoutY="382.0" text="Public Key:">
          <font>
             <Font name="Verdana" size="15.0" />
          </font>
       </Label>
-      <Label layoutX="18.0" layoutY="306.0" text="Private Key:">
+      <Label layoutX="14.0" layoutY="419.0" text="Private Key:">
          <font>
             <Font name="Verdana" size="15.0" />
          </font>
       </Label>
-      <Label fx:id="error_label" layoutX="286.0" layoutY="209.0">
+      <Label fx:id="error_label" layoutX="230.0" layoutY="300.0">
          <font>
             <Font name="Verdana" size="12.0" />
          </font>
       </Label>
-      <TextField fx:id="result_textfield" editable="false" layoutX="112.0" layoutY="241.0" prefHeight="25.0" prefWidth="462.0" />
-      <TextField fx:id="publickey_textfield" editable="false" layoutX="111.0" layoutY="270.0" prefHeight="25.0" prefWidth="462.0" />
-      <TextField fx:id="privatekey_textfield" editable="false" layoutX="111.0" layoutY="303.0" prefHeight="25.0" prefWidth="462.0" />
+      <TextField fx:id="result_textfield" editable="false" layoutX="110.0" layoutY="337.0" prefHeight="25.0" prefWidth="462.0" />
+      <TextField fx:id="publickey_textfield" editable="false" layoutX="110.0" layoutY="379.0" prefHeight="25.0" prefWidth="462.0" />
+      <TextField fx:id="privatekey_textfield" editable="false" layoutX="110.0" layoutY="416.0" prefHeight="25.0" prefWidth="462.0" />
+      <Label layoutX="14.0" layoutY="215.0" text="Private Key:">
+         <font>
+            <Font name="Verdana" size="15.0" />
+         </font>
+      </Label>
+      <TextField fx:id="privatekey_enterfield" layoutX="110.0" layoutY="212.0" prefHeight="25.0" prefWidth="462.0" />
+      <Button layoutX="259.0" layoutY="252.0" mnemonicParsing="false" onAction="#decrypt" prefHeight="25.0" prefWidth="82.0" text="Decrypt" />
    </children>
 </AnchorPane>

@@ -41,8 +41,8 @@ public class MainSceneController {
 	public void RSAScene(ActionEvent e) throws IOException {
 		root = FXMLLoader.load(getClass().getResource("RSAScene.fxml"));
 		stage = (Stage) ((Node)e.getSource()).getScene().getWindow();
-		stage.setHeight(425);
-		stage.setWidth(600);
+		stage.setHeight(520);
+		stage.setWidth(628);
 		scene = new Scene(root);
 		String css = this.getClass().getResource("application.css").toExternalForm();
 		scene.getStylesheets().add(css);
