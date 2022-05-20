@@ -28,10 +28,12 @@ import javafx.stage.Stage;
 
 public class TripleDES {
 
+	//JavaFX components
 	private Parent root;
 	private Stage stage;
 	private Scene scene;
 	
+	//FXML fields we need
 	@FXML
 	TextField tripledes_textfield;
 	@FXML
