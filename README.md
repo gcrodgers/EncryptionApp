@@ -10,6 +10,6 @@ Creates a GUI using JavaFX that implements simple demonstrations of the followin
 
 TODO: Current implementation for all but Caesar Cipher uses java.security and javax.crypto. While this has taught me how these algorithms work, I would like to try implementations without them if possible.
 
-TODO: Improve the look of GUI.
+TODO: Improve the look of GUI (using CSS).
 
 Possible future additions: login, encrypt/decrypt whole files, Blowfish/Twofish?
